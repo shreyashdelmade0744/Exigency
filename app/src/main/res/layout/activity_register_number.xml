@@ -9,50 +9,46 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="700dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:gravity="center"
         android:orientation="vertical">
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:layout_height="80dp"
             android:gravity="center_horizontal"
-            >
+            android:orientation="horizontal">
 
 
-        <EditText
-            android:id="@+id/number"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="250dp"
-            android:background="@drawable/edit_text_border"
-            android:hint="Registered Number"
-            android:padding="10dp"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textColorHint="#fff"
-            android:textStyle="bold|italic" />
+            <EditText
+                android:id="@+id/number"
+                android:layout_width="250dp"
+                android:layout_height="50dp"
+                android:layout_marginRight="12dp"
+                android:layout_marginBottom="250dp"
+                android:background="@drawable/edit_text_border"
+                android:hint="Registered Number"
+                android:padding="10dp"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textColorHint="#fff"
+                android:textStyle="bold|italic" />
 
             <ImageView
+                android:id="@+id/contact"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="25dp"
-                android:id="@+id/contact"
-                android:src="@drawable/baseline_perm_contact_calendar_24"
-                />
-
-
-
-
+                android:layout_marginLeft="2dp"
+                android:layout_marginTop="13dp"
+                android:src="@drawable/baseline_perm_contact_calendar_24" />
 
         </LinearLayout>
 
         <EditText
             android:id="@+id/Name"
-            android:layout_width="250dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/edit_text_border"
             android:hint="Name"
@@ -65,9 +61,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
             android:text="Enter number to send sms \nin \n emergency"
             android:textAlignment="center"
+            android:layout_marginTop="300dp"
             android:textColor="@color/white"
             android:textSize="20dp"
             android:textStyle="bold" />
@@ -75,7 +71,8 @@
         <Button
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="23dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="-300dp"
             android:background="@drawable/button_styling"
             android:onClick="saveNumber"
             android:text="FINISH" />

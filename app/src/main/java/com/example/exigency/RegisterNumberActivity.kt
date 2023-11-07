@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.provider.ContactsContract
 import android.view.View
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import com.google.android.material.textfield.TextInputEditText
@@ -17,6 +18,7 @@ class RegisterNumberActivity : AppCompatActivity() {
 
     private lateinit var number: EditText
     private lateinit var name: EditText
+    private lateinit var contact: ImageView
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,8 +26,9 @@ class RegisterNumberActivity : AppCompatActivity() {
         setContentView(R.layout.activity_register_number)
         number = findViewById(R.id.number)
         name = findViewById(R.id.Name)
+        contact = findViewById(R.id.contact)
 
-        number.setOnClickListener {
+        contact.setOnClickListener {
             val i = Intent(Intent.ACTION_PICK)
             i.type = ContactsContract.CommonDataKinds.Phone.CONTENT_TYPE
             startActivityForResult(i, 111)
