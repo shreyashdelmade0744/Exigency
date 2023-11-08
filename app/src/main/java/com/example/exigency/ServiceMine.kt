@@ -97,6 +97,8 @@ class ServiceMine : Service() {
         val ENUM = sharedPreferences.getString("ENUM", "NONE")
         if (!ENUM.equals("NONE", ignoreCase = true)) {
             manager.sendTextMessage(ENUM, null, "Im in Trouble!\nSending My Location :\n$myLocation", null, null)
+
+
         }
     }
 

@@ -7,16 +7,22 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.content.pm.PackageManager
+import android.media.MediaPlayer
 import android.os.Build
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
+import android.widget.ToggleButton
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.google.android.material.snackbar.Snackbar
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var alarm : ToggleButton
 
     private val sharedPreferences: SharedPreferences by lazy {
         getSharedPreferences("MySharedPref", MODE_PRIVATE)
@@ -37,11 +43,30 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        alarm = findViewById(R.id.Alarm)
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val channel = NotificationChannel("MYID", "CHANNELFOREGROUND", NotificationManager.IMPORTANCE_DEFAULT)
             val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             notificationManager.createNotificationChannel(channel)
         }
+
+
+
+        var mp = MediaPlayer.create(applicationContext, R.raw.siren)
+        mp.isLooping = true
+
+        alarm.setOnCheckedChangeListener { _, isChecked ->
+            if(isChecked){
+                 mp = MediaPlayer.create(applicationContext, R.raw.siren)
+                 mp.isLooping = true
+                 mp.start()
+             }
+            else{
+                mp.stop()
+             }
+        }
+
     }
 
     private val multiplePermissions = registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { result: Map<String, Boolean> ->
