@@ -12,6 +12,7 @@ import android.content.pm.PackageManager
 import android.location.Location
 import android.os.IBinder
 import android.telephony.SmsManager
+import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import com.github.tbouron.shakedetector.library.ShakeDetector
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -58,6 +59,8 @@ class ServiceMine : Service() {
             val ENUM = sharedPreferences.getString("ENUM", "NONE")
             if (!ENUM.equals("NONE", ignoreCase = true)) {
                 manager.sendTextMessage(ENUM, null, "Im in Trouble!\nSending My Location :\n$myLocation", null, null)
+                Toast.makeText(this, "SMS sent successfully", Toast.LENGTH_SHORT).show()
+
             }
         }
     }
@@ -97,8 +100,6 @@ class ServiceMine : Service() {
         val ENUM = sharedPreferences.getString("ENUM", "NONE")
         if (!ENUM.equals("NONE", ignoreCase = true)) {
             manager.sendTextMessage(ENUM, null, "Im in Trouble!\nSending My Location :\n$myLocation", null, null)
-
-
         }
     }
 
