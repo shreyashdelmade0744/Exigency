@@ -8,6 +8,7 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.media.MediaPlayer
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.view.View
@@ -90,9 +91,13 @@ class MainActivity : AppCompatActivity() {
     fun stopService(view: View) {
         val notificationIntent = Intent(this, ServiceMine::class.java)
         notificationIntent.action = "stop"
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            applicationContext.startForegroundService(notificationIntent)
+            applicationContext.stopService(notificationIntent)
             Snackbar.make(findViewById(android.R.id.content), "Service Stopped!", Snackbar.LENGTH_LONG).show()
+
+            // Revoke permissions here
+            revokePermissions()
         }
     }
 
@@ -123,6 +128,22 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
+
+    private fun revokePermissions() {
+        val permissionsToRevoke = arrayOf(
+            Manifest.permission.SEND_SMS,
+            Manifest.permission.ACCESS_COARSE_LOCATION,
+            Manifest.permission.ACCESS_FINE_LOCATION
+        )
+
+        for (permission in permissionsToRevoke) {
+            if (ContextCompat.checkSelfPermission(this, permission) == PackageManager.PERMISSION_GRANTED) {
+                val intent = Intent(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+                intent.data = Uri.parse("package:$packageName")
+                startActivity(intent)
+            }
+        }
+    }
 
 
 }
